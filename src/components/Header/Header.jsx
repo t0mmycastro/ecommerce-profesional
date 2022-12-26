@@ -34,7 +34,6 @@ const Header = () => {
             <img src={logo} alt='logo '/>
             <div>
               <h1>NeuSmart</h1>
-              <p>Creado en 2021</p>
             </div>
           </div>
 
