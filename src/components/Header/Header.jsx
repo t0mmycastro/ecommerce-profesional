@@ -9,6 +9,7 @@ import logo from '../../assets/images/eco-logo.png'
 import userIcon from '../../assets/images/user-icon.png'
 
 import { Container, Row } from 'reactstrap'
+import { useSelector } from 'react-redux'
 
 const nav__links = [
   {
@@ -26,6 +27,9 @@ const nav__links = [
 ]
 
 const Header = () => {
+
+  // Con esto podemos ver el total que vamos llevando 
+  const totalQuantity = useSelector(state => state.cart.totalQuantity)
 
   const headerRef = useRef(null)
   const menuRef = useRef(null)
@@ -81,7 +85,7 @@ const Header = () => {
           </span>
             <span className='cart__icon'>
               <i class="ri-shopping-basket-line"></i>
-              <span className='badge'>1</span>
+              <span className='badge'>{totalQuantity}</span>
             </span>
 
             <span>
