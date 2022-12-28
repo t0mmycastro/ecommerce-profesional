@@ -45,6 +45,7 @@
     display: flex;
     align-items: center;
     column-gap: 1.2rem;
+    cursor: pointer;
 }
 
 .nav__icons span i{

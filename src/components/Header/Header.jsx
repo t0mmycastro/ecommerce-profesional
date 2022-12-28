@@ -79,10 +79,10 @@ const Header = () => {
           <div className='nav__icons'>
 
 
-          <span className='fav__icon'>
-            <i class="ri-service-line"></i>
+            <span className='fav__icon'>
+              <i class="ri-service-line"></i>
             <span className='badge'>1</span>
-          </span>
+            </span>
             <span className='cart__icon'>
               <i class="ri-shopping-basket-line"></i>
               <span className='badge'>{totalQuantity}</span>
