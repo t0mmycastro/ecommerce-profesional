@@ -1,6 +1,6 @@
 import React, {useRef,useEffect} from 'react'
 
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import './header.css'
 
 import {motion} from 'framer-motion'
@@ -33,6 +33,7 @@ const Header = () => {
 
   const headerRef = useRef(null)
   const menuRef = useRef(null)
+  const navigate = useNavigate()
 
   // Nos deja navegar por la página y el menu de navegación se desplega con un efecto 'Scroll'
 
@@ -55,6 +56,10 @@ const Header = () => {
   /* Función la cual si el usuario presiona el menu mobile, se le activará un menu*/
 
   const menuToggle = () => menuRef.current.classList.toggle('active__menu')
+
+  const navigateToCart = () => {
+      navigate("/cart")
+  }
 
   return <header className='header' ref={headerRef}>
     <Container>
@@ -83,7 +88,7 @@ const Header = () => {
               <i class="ri-service-line"></i>
             <span className='badge'>1</span>
             </span>
-            <span className='cart__icon'>
+            <span className='cart__icon' onClick={navigateToCart}>
               <i class="ri-shopping-basket-line"></i>
               <span className='badge'>{totalQuantity}</span>
             </span>
