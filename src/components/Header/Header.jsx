@@ -10,6 +10,9 @@ import userIcon from '../../assets/images/user-icon.png'
 
 import { Container, Row } from 'reactstrap'
 import { useSelector } from 'react-redux'
+import useAuth from '../../custom-hooks/useAuth'
+
+import { Link } from 'react-router-dom'
 
 const nav__links = [
   {
@@ -30,10 +33,12 @@ const Header = () => {
 
   // Con esto podemos ver el total que vamos llevando 
   const totalQuantity = useSelector(state => state.cart.totalQuantity)
+  const profileActionRef = useRef(null)
 
   const headerRef = useRef(null)
   const menuRef = useRef(null)
   const navigate = useNavigate()
+  const {currentUser} = useAuth()
 
   // Nos deja navegar por la página y el menu de navegación se desplega con un efecto 'Scroll'
 
@@ -60,6 +65,8 @@ const Header = () => {
   const navigateToCart = () => {
       navigate("/cart")
   }
+
+  const toggleProfileActions = () => profileActionRef.current.classList.toggle('show__profileActions')
 
   return <header className='header' ref={headerRef}>
     <Container>
@@ -93,9 +100,18 @@ const Header = () => {
               <span className='badge'>{totalQuantity}</span>
             </span>
 
-            <span>
-              <motion.img whileTap={{scale: 1.2}} src={userIcon} alt=''/>
-            </span>
+            <div className='profile'>
+              <motion.img whileTap={{scale: 1.2}} src={currentUser ? currentUser.photoURL : userIcon} alt='' onClick={toggleProfileActions}/>
+              <div className='profile__actions' ref={profileActionRef} onClick={toggleProfileActions}>
+                  {currentUser ? (<span>Salir</span>) :
+                   (<div>
+                    <Link to='/signup'>Registrarse</Link>
+                    <Link to='/login'>Logearse</Link>
+                   </div>)
+                   
+                   }
+              </div>
+            </div>
             <div className='mobile__menu'>
               <span onClick={menuToggle}><i class="ri-menu-line"></i></span>
             </div>
